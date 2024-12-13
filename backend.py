@@ -33,9 +33,9 @@ async def get_data_as_zip(file: UploadFile = File(...)):
     else:
         return {"Error": f"{file.content_type}"}
 
-    zip_path = "output/result.zip"
+    zip_path = "data/response.zip"
     with zipfile.ZipFile(zip_path, "w") as zipf:
         for img_path in output_dir.glob("*"):
             zipf.write(img_path, Path(img_path).name)
 
-    return FileResponse(zip_path, media_type="application/zip", filename="result.zip")
+    return FileResponse(zip_path, media_type="application/zip", filename="response.zip")
